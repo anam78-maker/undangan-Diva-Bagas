@@ -13,6 +13,9 @@
     .overlay{background:linear-gradient(to bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.7));}
     #musicControl{position:fixed;bottom:1rem;right:1rem;z-index:50;}
     .section-padding{padding:4rem 1rem;}
+    .countdown-box{display:flex;gap:1rem;justify-content:center;}
+    .countdown-item{background-color:rgba(0,0,0,0.4);padding:1rem 1.5rem;border-radius:0.5rem;min-width:70px;}
+    .countdown-number{font-size:2rem;font-weight:bold;color:#facc15;}
   </style>
 </head>
 <body class="bg-[#1c1b1b] text-white font-body">
@@ -38,12 +41,35 @@
   <!-- UNDANGAN -->
   <main id="invitation" class="hidden">
     <!-- Hero -->
-    <section class="relative h-[60vh] flex items-center justify-center text-center">
+    <section class="relative h-[60vh] flex flex-col items-center justify-center text-center">
       <img src="assets/foto1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Hero"/>
       <div class="absolute inset-0 overlay"></div>
       <div class="relative z-10">
         <h1 class="text-5xl font-display text-yellow-200">Diva & Bagas</h1>
         <p class="mt-2">12 Oktober 2025 | Pohkumbang</p>
+      </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Menuju Hari Bahagia</h2>
+      <div id="countdown" class="countdown-box">
+        <div class="countdown-item">
+          <div id="days" class="countdown-number">00</div>
+          <div>Hari</div>
+        </div>
+        <div class="countdown-item">
+          <div id="hours" class="countdown-number">00</div>
+          <div>Jam</div>
+        </div>
+        <div class="countdown-item">
+          <div id="minutes" class="countdown-number">00</div>
+          <div>Menit</div>
+        </div>
+        <div class="countdown-item">
+          <div id="seconds" class="countdown-number">00</div>
+          <div>Detik</div>
+        </div>
       </div>
     </section>
 
@@ -105,7 +131,7 @@
     <section class="section-padding text-center">
       <h2 class="text-3xl font-display text-yellow-200 mb-8">Lokasi</h2>
       <iframe class="w-full max-w-3xl mx-auto rounded-lg h-64"
-        src="https://www.google.com/maps/place/-7.594670,109.549149/data=!4m6!3m5!1s0!7e2!8m2!3d-7.5946703!4d109.549149?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjM3LjAYACDl7Q0qqwEsOTQyNjc3MjcsOTQyNzU0MDcsOTQyODQ0ODQsOTQyMjMyOTksOTQyMTY0MTMsOTQyODA1NzYsOTQyMTI0OTYsOTQyODUwNTIsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTc1MjMsOTQyMTg2NTMsOTQyMjk4MzksOTQyNzUxNjgsOTQyNjI3MzksNDcwODQzOTMsOTQyMTMyMDAsOTQyNTgzMjVCAklE&skid=81d6b9fd-0b48-4021-b652-11fc7036a5d4&g_st=aw"
+        src="https://www.google.com/maps/embed?pb=!1m18..."
         allowfullscreen="" loading="lazy"></iframe>
     </section>
 
@@ -147,11 +173,9 @@
       document.getElementById('open').classList.add('hidden');
       const main=document.getElementById('invitation');
       main.classList.remove('hidden');
-
       bgMusic.play().then(()=>{
         isPlaying=true;musicControl.classList.remove('hidden');
       }).catch(err=>console.log('Autoplay diblokir:',err));
-
       gsap.from(main.children,{opacity:0,y:50,stagger:0.3,duration:1});
     }
 
@@ -161,10 +185,29 @@
       isPlaying=!isPlaying;
     });
 
+    // Countdown Timer
+    const weddingDate=new Date("Oct 12, 2025 10:00:00").getTime();
+    const daysEl=document.getElementById('days');
+    const hoursEl=document.getElementById('hours');
+    const minutesEl=document.getElementById('minutes');
+    const secondsEl=document.getElementById('seconds');
+    setInterval(()=>{
+      const now=new Date().getTime();
+      const distance=weddingDate-now;
+      const days=Math.floor(distance/(1000*60*60*24));
+      const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+      const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+      const seconds=Math.floor((distance%(1000*60))/1000);
+      daysEl.textContent=days<10?'0'+days:days;
+      hoursEl.textContent=hours<10?'0'+hours:hours;
+      minutesEl.textContent=minutes<10?'0'+minutes:minutes;
+      secondsEl.textContent=seconds<10?'0'+seconds:seconds;
+    },1000);
+
     // Scroll animations
     document.addEventListener("DOMContentLoaded",()=>{
       gsap.utils.toArray("section").forEach(sec=>{
-        gsap.from(sec,{opacity:0,y:50,duration:1,scrollTrigger:{trigger:sec,start:"top 85%"}});
+        gsap.from(sec,{opacity:0,y:50,duration:1,scrollTrigger:{trigger:sec,start:"top 85%"}})
       });
     });
 
