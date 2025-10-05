@@ -18,26 +18,221 @@
     .countdown-item{background-color:rgba(0,0,0,0.4);padding:1rem 1.5rem;border-radius:0.5rem;min-width:70px;}
     .countdown-number{font-size:2rem;font-weight:bold;color:#d4c2a8;}
   </style>
+ 
+ <!-- Animate.css -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+
+<style>
+  .overlay {
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  /* Efek zoom background */
+  .bg-zoom {
+    animation: zoomBg 20s ease-in-out infinite alternate;
+  }
+  @keyframes zoomBg {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+
+  /* Animasi floating lembut */
+  @keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* Tombol dengan efek interaktif */
+  .btn-anim {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-anim:hover {
+    transform: scale(0.95) rotate(-1deg);
+    box-shadow: 0 0 15px rgba(212, 194, 168, 0.6);
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Diva & Bagas</title>
+
+  <!-- Tambahkan ini di bawah link Tailwind -->
+  <style>
+    /* Animasi keluar untuk halaman pembuka */
+    .fade-out {
+      animation: fadeOut 0.8s forwards;
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.95); }
+    }
+
+    /* Efek muncul ke atas */
+    .fade-in-up {
+      animation: fadeInUp 1.2s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Efek bounce angka countdown */
+    .count-bounce {
+      animation: bounce 0.3s ease;
+    }
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.2); }
+      60% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
+
+
+</head>
+
+<script>
+function showInvitation() {
+  const open = document.getElementById("open");
+  const invitation = document.getElementById("invitation");
+
+  // Efek keluar untuk halaman pembuka
+  open.classList.add("fade-out");
+
+  setTimeout(() => {
+    open.style.display = "none";
+    invitation.classList.remove("hidden");
+    invitation.classList.add("fade-in-up");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 800);
+}
+
+// Efek animasi saat scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("fade-in-up");
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll("section").forEach((section) => {
+  observer.observe(section);
+});
+
+function showInvitation() {
+  const open = document.getElementById("open");
+  const invitation = document.getElementById("invitation");
+
+  open.classList.add("fade-out");
+
+  setTimeout(() => {
+    open.style.display = "none";
+    invitation.classList.remove("hidden");
+    invitation.classList.add("fade-in-up");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 800);
+}
+
+// Countdown
+document.addEventListener("DOMContentLoaded", () => {
+  const countDownDate = new Date("October 12, 2025 08:00:00").getTime();
+
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    if (distance < 0) {
+      clearInterval(timer);
+      document.getElementById("countdown").innerHTML = "<p>Hari yang ditunggu telah tiba!</p>";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const ids = ["days", "hours", "minutes", "seconds"];
+    [days, hours, minutes, seconds].forEach((num, i) => {
+      const el = document.getElementById(ids[i]);
+      if (el) {
+        el.textContent = num.toString().padStart(2, "0");
+        el.classList.add("count-bounce");
+        setTimeout(() => el.classList.remove("count-bounce"), 300);
+      }
+    });
+  }, 1000);
+});
+</script>
+
+
 <body class="bg-[#1c1b1b] text-white font-body">
 
   <!-- AUDIO -->
   <audio id="bgMusic" loop>
     <source src="assets/backsoun.mp3" type="audio/mpeg">
   </audio>
-<button id="musicControl" class="hidden px-4 py-2 bg-[#d4c2a8] rounded-full shadow hover:scale-105 transition">⏸ Pause</button>
+<button id="musicControl" class="text-sm hidden px-4 py-2 bg-[#d4c2a8] rounded-full shadow hover:scale-105 transition">⏸ Pause</button>
 
   <!-- OPEN INVITATION -->
-  <section id="open" class="relative h-screen flex flex-col items-center justify-center text-center">
-    <img src="assets/foto1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Background"/>
-    <div class="absolute inset-0 overlay"></div>
-    <div class="relative z-10 space-y-6">
-      <h2 class="text-lg tracking-widest">The Wedding Of</h2>
-      <h1 class="text-6xl font-display text-[#d4c2a8]">Diva & Bagas</h1>
-      <p class="text-sm">Minggu, 12 Oktober 2025</p>
-      <button onclick="showInvitation()" class="mt-6 px-6 py-2 bg-[#d4c2a8] rounded-full hover:scale-105 transition-transform">Open Invitation</button>
+<!-- OPEN INVITATION -->
+<section id="open" class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+  <img src="assets/foto1.jpg" class="absolute inset-0 w-full h-full object-cover bg-zoom" alt="Background"/>
+  <div class="absolute inset-0 overlay"></div>
+
+  <div class="relative z-10 space-y-6 text-white">
+    <h2 class="text-lg tracking-widest animate__animated animate__fadeInDown animate__slow">
+      The Wedding Of
+    </h2>
+
+    <h1 class="text-6xl font-display text-[#d4c2a8] drop-shadow-xl animate__animated animate__fadeInUp animate__delay-1s"
+        style="animation-delay: 1s; animation-duration: 1.8s;">
+      Diva & Bagas
+    </h1>
+
+    <p class="text-sm animate__animated animate__fadeInUp animate__delay-2s" style="animation-delay: 2s;">
+      Minggu, 12 Oktober 2025
+    </p>
+
+    <!-- Tambahan: Nama Tamu Undangan -->
+    <div id="guest-name"
+      class="mt-6 text-sm italic animate__animated animate__fadeInUp animate__delay-3s"
+      style="animation-delay: 3s;">
+      <span class="font-semibold text-sm">Tamu Undangan</span>
     </div>
-  </section>
+
+    <button onclick="showInvitation()"
+      class="btn-anim mt-6 px-6 py-2 bg-[#d4c2a8] text-white rounded-full text-sm shadow-lg animate__animated animate__fadeInUp animate__delay-4s"
+      style="animation-delay: 4s;">
+      Open Invitation
+    </button>
+  </div>
+</section>
+
+<script>
+/* --- Menangkap nama dari URL --- */
+// Contoh URL: https://undangan.com/index.html?to=Diva%20Syaharani
+const urlParams = new URLSearchParams(window.location.search);
+const guest = urlParams.get('to');
+
+if (guest) {
+  document.getElementById('guest-name').innerHTML = `Kepada Yth. <span class="font-semibold">${guest}</span>`;
+}
+</script>
+
 
   <!-- UNDANGAN -->
   <main id="invitation" class="hidden">
@@ -53,7 +248,7 @@
 
     <!-- Countdown Timer -->
     <section class="max-w-3xl mx-auto px-12 section-padding text-center">
-      <h2 class="text-3xl text-center font-display text-[#d4c2a8] mb-8">Menuju Hari Bahagia</h2>
+      <h2 class="text-3xl text-center font-display text-[#d4c2a8] mb-6">Menuju Hari Bahagia</h2>
       <div id="countdown" class="countdown-box">
         <div class="countdown-item">
           <div id="days" class="countdown-number">00</div>
@@ -76,7 +271,7 @@
 
     <!-- Profil -->
     <section class="section-padding text-center">
-      <h2 class="text-3xl font-display text-[#d4c2a8] mb-8">Tentang Kami</h2>
+      <h2 class="text-3xl font-display text-[#d4c2a8] mb-10">Tentang Kami</h2>
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div>
           <img src="assets/diva.png" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover"/>
@@ -95,7 +290,7 @@
 
     <!-- Detail Acara -->
     <section class="section-padding bg-black/30 text-center">
-      <h2 class="text-3xl font-display text-[#d4c2a8] mb-8">Detail Acara</h2>
+      <h2 class="text-3xl font-display text-[#d4c2a8] mb-2">Detail Acara</h2>
       <div class="space-y-6 max-w-2xl mx-auto">
         <div>
           <h4 class="max-w-3xl mx-auto px-8 text-xl font-semibold">Akad Nikah</h4>
@@ -131,7 +326,7 @@
 
     <!-- Kisah Cinta -->
     <section class="section-padding text-center">
-      <h2 class="text-3xl font-display text-[#d4c2a8] mb-8 text-center">Kisah Cinta Kami</h2>
+      <h2 class="text-3xl font-display text-[#d4c2a8] mb-4 text-center">Kisah Cinta Kami</h2>
       <div class="max-w-3xl mx-auto px-12 text-center leading-relaxed text-sm">
         <p>Tidak ada yang kebetulan di dunia ini. Semua sudah tersusun dengan sangat rapi, oleh sang maha kuasa. kami tidak bisa memilih kepada siapa kita akan jatuh cinta. Untuk pertama kalinya kita bertemu tanpa sengaja di bangku SMK pada tahun 2018.<p>
        
@@ -144,23 +339,67 @@
     </section>
 
     <!-- Galeri -->
-    <section class="section-padding bg-black/30 text-center">
-      <h2 class="text-3xl font-display text-[#d4c2a8] mb-8">Galeri Foto</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-4xl mx-auto">
-        <img src="assets/foto1.jpg" class="rounded-lg object-cover"/>
-        <img src="assets/foto2.jpg" class="rounded-lg object-cover"/>
-        <img src="assets/foto3.jpg" class="rounded-lg object-cover"/>
-        <img src="assets/foto4.jpg" class="rounded-lg object-cover"/>
-      </div>
-    </section>
+  <!-- Galeri Foto -->
+<section class="section-padding bg-black/30 text-center">
+  <h2 class="text-3xl font-display text-[#d4c2a8]  mb-4">Galeri Foto</h2>
 
-    <!-- Lokasi -->
-    <section class="section-padding text-center">
-      <h2 class="text-3xl font-display text-[#d4c2a8] mb-8">Lokasi</h2>
-      <iframe class="w-full max-w-3xl mx-auto rounded-lg h-64"
-        src="https://www.google.com/maps/embed?pb=!1m18..."
-        allowfullscreen="" loading="lazy"></iframe>
-    </section>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-5xl mx-auto px-4 auto-rows-[200px] md:auto-rows-[250px]">
+
+    <!-- Foto besar -->
+    <div class="group relative overflow-hidden rounded-xl border border-[#d4c2a8]/40 shadow-lg md:row-span-2 md:col-span-2">
+      <img src="assets/foto6.jpg" alt="Foto 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+    </div>
+
+    <!-- Foto kecil 1 -->
+    <div class="group relative overflow-hidden rounded-xl border border-[#d4c2a8]/40 shadow-lg">
+      <img src="assets/foto2.jpg" alt="Foto 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+    </div>
+
+    <!-- Foto kecil 2 -->
+    <div class="group relative overflow-hidden rounded-xl border border-[#d4c2a8]/40 shadow-lg">
+      <img src="assets/foto7.jpg" alt="Foto 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+    </div>
+
+    <!-- Foto kecil 3 -->
+    <div class="group relative overflow-hidden rounded-xl border border-[#d4c2a8]/40 shadow-lg md:col-span-1">
+      <img src="assets/foto4.jpg" alt="Foto 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+    </div>
+  </div>
+</section>
+
+
+   <!-- Lokasi -->
+<section id="lokasi" class="section-padding text-center relative bg-black/40">
+  <h2 class="text-3xl font-display text-[#d4c2a8] mb-2">Lokasi Acara</h2>
+
+  <p class="text-gray-300 mb-10 px-6">
+    Kami sangat menantikan kehadiran dan doa restu dari Bapak/Ibu/Saudara/i pada hari bahagia kami
+  </p>
+
+  <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-md border border-[#d4c2a8]/30 rounded-2xl shadow-lg overflow-hidden">
+    <!-- Map -->
+    <div class="relative">
+      <iframe 
+        class="w-full h-72 md:h-96 rounded-t-2xl" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5375208916915!2d109.54696037500396!3d-7.594670292423998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a9e29a3f7c6cf%3A0x3e12c3ff7f4ff86b!2sPohkumbang%2C%20Karanganyar%2C%20Kebumen!5e0!3m2!1sid!2sid!4v1728192100000!5m2!1sid!2sid"
+        allowfullscreen="" loading="lazy">
+      </iframe>
+
+    <!-- Detail Lokasi -->
+    <div class="p-6">
+      <h3 class="text-xl font-semibold text-[#d4c2a8] mb-2">Rumah Mempelai Wanita</h3>
+      <p class="text-gray-300 text-sm mb-4">Randakeli RT 03/04, Pohkumbang, Karanganyar, Kebumen</p>
+      
+      <a 
+        href="https://www.google.com/maps/dir/?api=1&destination=-7.594670,109.549149" 
+        target="_blank"
+        class="inline-block bg-[#d4c2a8] text-sm text-white px-6 py-2 rounded-full hover:bg-[#a68e69] hover:scale-90 transition-transform duration-300">
+        Buka di Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
 
     <!-- Hadiah -->
     <section id="gift" class="min-h-screen flex flex-col items-center justify-center px-6 py-16 text-center">
@@ -172,29 +411,29 @@
   <!-- Kartu Rekening -->
   <div class="space-y-6 w-full max-w-md fade-in delay-2">
     <div class="bg-white shadow-lg rounded-2xl p-6 border border-[#e4dccf]">
-      <img src="assets/bca.png" alt="BCA" class="mx-auto mb-3 w-16">
-      <h3 class="text-lg font-semibold text-gray-800">Bank Mandiri - 1840006015208</h3>
-      <p class="text-gray-500">a.n. DIVA SYAHARANI</p>
+      <img src="assets/logo_mandiri.png" alt="BCA" class="mx-auto mb-3 w-16">
+      <h3 class="text-medium font-semibold text-gray-800">Bank Mandiri - 1840006015208</h3>
+      <p class="text-gray-500">a.n. Diva Syaharani</p>
       <button 
-        class="mt-4 bg-[#d4c2a8] hover:bg-[#8b6b3f] text-white px-4 py-2 rounded-lg text-sm transition transform hover:scale-105"
+        class="mt-4 bg-[#d4c2a8] hover:bg-[#8b6b3f] text-white px-4 py-2 rounded-full text-sm transition transform hover:scale-90"
         onclick="copyToClipboard('1840006015208')">
         Salin Nomor Rekening
       </button>
     </div>
 
     <div class="bg-white shadow-lg rounded-2xl p-6 border border-[#e4dccf]">
-      <img src="assets/dana.png" alt="DANA" class="mx-auto mb-3 w-16">
-      <h3 class="text-lg font-semibold text-gray-800">DANA - 088228877844</h3>
+      <img src="assets/logo_dana.png" alt="DANA" class="mx-auto mb-3 w-16">
+      <h3 class="text-medium font-semibold text-gray-800">DANA - 088228877844</h3>
       <p class="text-gray-500">a.n. Bagas Susilo</p>
       <button 
-        class="mt-4 bg-[#d4c2a8] hover:bg-[#8b6b3f] text-white px-4 py-2 rounded-lg text-sm transition transform hover:scale-105"
+        class="mt-4 bg-[#d4c2a8] hover:bg-[#8b6b3f] text-white px-4 py-2 rounded-full text-sm transition transform hover:scale-90"
         onclick="copyToClipboard('088228877844')">
         Salin Nomor DANA
       </button>
     </div>
   </div>
 
-  <p class="text-white mt-12 italic fade-in delay-3">
+  <p class="text-white mt-12 italic fade-in delay-3 text-center text-medium">
     Terima kasih atas doa dan kasih sayangnya</p>
    <div>
 </section>
@@ -202,7 +441,7 @@
 <!--ucapan-->
 <!-- 💌 Pesan Untuk Pengantin -->
     <section class="section-padding text-center">
-      <h2 class="text-3xl font-display text-[#d4c2a8] mb-8">Pesan Untuk Pengantin</h2>
+      <h2 class="text-3xl font-display text-[#d4c2a8] mb-2">Pesan Untuk Pengantin</h2>
 
       <form id="formUcapan" 
             class="max-w-md mx-auto bg-black/40 p-6 rounded-2xl shadow-lg space-y-4 ">
@@ -211,19 +450,19 @@
           name="nama" 
           placeholder="Nama kamu" 
           required
-          class="w-full px-4 py-2 rounded-lg text-black text-center focus:ring-2 focus:ring-[#d4c2a8] focus:outline-none"
+          class="w-full px-4 py-2 rounded-lg text-black text-center focus:ring-2 focus:ring-[#d4c2a8] focus:outline-none text-sm"
         />
         <textarea 
           name="pesan" 
           placeholder="Tulis ucapan..." 
           required
-          class="w-full px-4 py-2 rounded-lg text-black text-center h-32 focus:ring-2 focus:ring-[#d4c2a8] focus:outline-none resize-none"
+          class="w-full px-4 py-2 rounded-lg text-black text-center h-32 focus:ring-2 focus:ring-[#d4c2a8] focus:outline-none resize-none text-sm"
         ></textarea>
         <button 
           type="submit" 
-          class="w-full bg-[#d4c2a8] text-white py-2 rounded-full hover:scale-105 transition-transform"
+          class="w-full bg-[#d4c2a8] px-4 py-2 text-white rounded-full hover:scale-90 transition-transform text-sm"
         >
-          Kirim Ucapan 💌
+          Kirim Ucapan
         </button>
       </form>
 
@@ -266,7 +505,7 @@ function showToast() {
 }
 </script>
 
-  </script>
+</script>
 
   <!-- Firebase -->
   <script type="module">
