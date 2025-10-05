@@ -43,11 +43,3 @@ function renderUcapan() {
   });
 }
 
-//salin nomor rekening
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert('Nomor telah disalin: ' + text);
-  }).catch(err => {
-    console.error('Gagal menyalin teks: ', err);
-  });
-}
