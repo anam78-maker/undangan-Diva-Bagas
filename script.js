@@ -31,6 +31,14 @@ function renderUcapan() {
     daftarUcapan.innerHTML = '<li class="text-center text-gray-400">Belum ada ucapan.</li>';
     return;
   }
+
+   //Script Salin
+<script>
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text);
+  alert('Nomor telah disalin: ' + text);
+}
+  
   ucapanList.forEach(item => {
     const li = document.createElement('li');
     li.className = 'bg-black/30 p-4 rounded';
