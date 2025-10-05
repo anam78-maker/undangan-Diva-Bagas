@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Undangan Pernikahan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <style>
+    body {scroll-behavior:smooth;}
+    .font-display{font-family:'Great Vibes',cursive;}
+    .font-body{font-family:'Noto Sans',sans-serif;}
+    .overlay{background:linear-gradient(to bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.7));}
+    #musicControl{position:fixed;bottom:1rem;right:1rem;z-index:50;}
+    .section-padding{padding:4rem 1rem;}
+    .countdown-box{display:flex;gap:1rem;justify-content:center;}
+    .countdown-item{background-color:rgba(0,0,0,0.4);padding:1rem 1.5rem;border-radius:0.5rem;min-width:70px;}
+    .countdown-number{font-size:2rem;font-weight:bold;color:#facc15;}
+  </style>
+</head>
+<body class="bg-[#1c1b1b] text-white font-body">
+
+  <!-- AUDIO -->
+  <audio id="bgMusic" loop>
+    <source src="assets/backsoun.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicControl" class="hidden px-4 py-2 bg-yellow-600 rounded-full shadow hover:scale-105 transition">⏸ Pause</button>
+
+  <!-- OPEN INVITATION -->
+  <section id="open" class="relative h-screen flex flex-col items-center justify-center text-center">
+    <img src="assets/foto1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Background"/>
+    <div class="absolute inset-0 overlay"></div>
+    <div class="relative z-10 space-y-6">
+      <h2 class="text-lg tracking-widest">The Wedding Of</h2>
+      <h1 class="text-6xl font-display text-yellow-200">Diva & Bagas</h1>
+      <p class="text-sm">Sabtu, 12 Oktober 2025</p>
+      <button onclick="showInvitation()" class="mt-6 px-6 py-2 bg-yellow-600 rounded-full hover:scale-105 transition-transform">Open Invitation</button>
+    </div>
+  </section>
+
+  <!-- UNDANGAN -->
+  <main id="invitation" class="hidden">
+    <!-- Hero -->
+    <section class="relative h-[60vh] flex flex-col items-center justify-center text-center">
+      <img src="assets/foto1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Hero"/>
+      <div class="absolute inset-0 overlay"></div>
+      <div class="relative z-10">
+        <h1 class="text-5xl font-display text-yellow-200">Diva & Bagas</h1>
+        <p class="mt-2">12 Oktober 2025 | Pohkumbang</p>
+      </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Menuju Hari Bahagia</h2>
+      <div id="countdown" class="countdown-box">
+        <div class="countdown-item">
+          <div id="days" class="countdown-number">00</div>
+          <div>Hari</div>
+        </div>
+        <div class="countdown-item">
+          <div id="hours" class="countdown-number">00</div>
+          <div>Jam</div>
+        </div>
+        <div class="countdown-item">
+          <div id="minutes" class="countdown-number">00</div>
+          <div>Menit</div>
+        </div>
+        <div class="countdown-item">
+          <div id="seconds" class="countdown-number">00</div>
+          <div>Detik</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profil -->
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Tentang Kami</h2>
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div>
+          <img src="assets/foto2.jpg" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover"/>
+          <h3 class="text-2xl font-semibold">Diva</h3>
+          <p class="mt-2">Deskripsi singkat mempelai wanita…</p>
+        </div>
+        <div>
+          <img src="assets/foto3.jpg" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover"/>
+          <h3 class="text-2xl font-semibold">Bagas</h3>
+          <p class="mt-2">Deskripsi singkat mempelai pria…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detail Acara -->
+    <section class="section-padding bg-black/30 text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Detail Acara</h2>
+      <div class="space-y-6 max-w-2xl mx-auto">
+        <div>
+          <h4 class="text-xl font-semibold">Akad Nikah</h4>
+          <p>Sabtu, 12 Oktober 2025 | 10:00 WIB</p>
+          <p>Lokasi: Masjid Pohkumbang</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold">Resepsi</h4>
+          <p>Sabtu, 12 Oktober 2025 | 18:00 WIB</p>
+          <p>Lokasi: Grand Ballroom Pohkumbang</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ayat Al-Qur'an -->
+    <section class="section-padding text-center bg-[#1a1a1a]/60">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Ayat Suci Al-Qur’an</h2>
+      <div class="max-w-3xl mx-auto space-y-6">
+        <p class="italic text-lg leading-relaxed">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ
+          بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+        </p>
+        <p class="text-yellow-200 font-medium">— QS. Ar-Rum : 21 —</p>
+        <p class="text-gray-300">
+          “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+          jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu
+          rasa kasih dan sayang.”
+        </p>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section class="section-padding">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8 text-center">Kisah Cinta Kami</h2>
+      <div class="max-w-3xl mx-auto space-y-8">
+        <p>Pertemuan pertama kami terjadi…</p>
+        <p>Tidak ada yang kebetulan di dunia ini. Semua sudah tersusun dengan sangat rapi, oleh sang maha kuasa. kami tidak bisa memilih kepada siapa kita akan jatuh cinta. Untuk pertama kalinya kita bertemu tanpa sengaja di bangku SMK pada tahun 2018</p>
+        <p>Kehendak-Nya menuntun kami pada pertemuan yang tak pernah disangka hingga akhirnya pada tanggal 14 Januari 2023 membawa kami pada sebuah ikatan yang di Ridhoi-Nya</p>
+        <p>Bukan karena bertemu lalu berjodoh, tapi karena berjodohlah kami bisa bertemu kami memutuskan untuk mengikrarkan jani suci pernikahan pada 12 Oktober 2025.
+          sebagaimana yang pernah dikatakan oleh Ali Bin Abi Thalib : "Apa yang menjadi takdirmu akan menemukan jalannya untuk menemukanmu"
+        </p>
+      </div>
+    </section>
+
+    <!-- Galeri -->
+    <section class="section-padding bg-black/30 text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Galeri Foto</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-4xl mx-auto">
+        <img src="assets/foto1.jpg" class="rounded-lg object-cover"/>
+        <img src="assets/foto2.jpg" class="rounded-lg object-cover"/>
+        <img src="assets/foto3.jpg" class="rounded-lg object-cover"/>
+        <img src="assets/foto4.jpg" class="rounded-lg object-cover"/>
+      </div>
+    </section>
+
+    <!-- Lokasi -->
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Lokasi</h2>
+      <iframe class="w-full max-w-3xl mx-auto rounded-lg h-64"
+        src="https://www.google.com/maps/embed?pb=!1m18..."
+        allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Konfirmasi Kehadiran</h2>
+      <form id="rsvpForm" class="max-w-md mx-auto space-y-4">
+        <input id="nama" type="text" placeholder="Nama" class="w-full p-2 rounded text-black" required>
+        <select id="kehadiran" class="w-full p-2 rounded text-black" required>
+          <option value="">Apakah Anda akan hadir?</option>
+          <option value="Ya">Ya, saya akan hadir</option>
+          <option value="Tidak">Maaf, tidak bisa hadir</option>
+        </select>
+        <textarea id="ucapan" placeholder="Ucapan atau doa" class="w-full p-2 rounded text-black" required></textarea>
+        <button type="submit" class="px-6 py-2 bg-yellow-600 rounded-full hover:scale-105 transition">Kirim</button>
+      </form>
+      <div class="max-w-2xl mx-auto mt-12 text-left">
+        <h3 class="text-2xl font-display text-yellow-200 mb-4 text-center">Ucapan yang Masuk</h3>
+        <ul id="daftarUcapan" class="space-y-4"></ul>
+      </div>
+    </section>
+
+    <!-- Hadiah -->
+    <section class="section-padding bg-black/30 text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Hadiah</h2>
+      <p>Jika ingin memberi hadiah, berikut pilihan yang tersedia…</p>
+    </section>
+  </main>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    const bgMusic=document.getElementById('bgMusic');
+    const musicControl=document.getElementById('musicControl');
+    let isPlaying=false;
+
+    function showInvitation(){
+      document.getElementById('open').classList.add('hidden');
+      const main=document.getElementById('invitation');
+      main.classList.remove('hidden');
+      bgMusic.play().then(()=>{
+        isPlaying=true;musicControl.classList.remove('hidden');
+      }).catch(err=>console.log('Autoplay diblokir:',err));
+      gsap.from(main.children,{opacity:0,y:50,stagger:0.3,duration:1});
+    }
+
+    musicControl.addEventListener('click',()=>{
+      if(isPlaying){bgMusic.pause();musicControl.textContent='▶ Play';}
+      else{bgMusic.play();musicControl.textContent='⏸ Pause';}
+      isPlaying=!isPlaying;
+    });
+
+    // Countdown Timer
+    const weddingDate=new Date("Oct 12, 2025 10:00:00").getTime();
+    const daysEl=document.getElementById('days');
+    const hoursEl=document.getElementById('hours');
+    const minutesEl=document.getElementById('minutes');
+    const secondsEl=document.getElementById('seconds');
+    setInterval(()=>{
+      const now=new Date().getTime();
+      const distance=weddingDate-now;
+      const days=Math.floor(distance/(1000*60*60*24));
+      const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+      const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+      const seconds=Math.floor((distance%(1000*60))/1000);
+      daysEl.textContent=days<10?'0'+days:days;
+      hoursEl.textContent=hours<10?'0'+hours:hours;
+      minutesEl.textContent=minutes<10?'0'+minutes:minutes;
+      secondsEl.textContent=seconds<10?'0'+seconds:seconds;
+    },1000);
+
+    // Scroll animations
+    document.addEventListener("DOMContentLoaded",()=>{
+      gsap.utils.toArray("section").forEach(sec=>{
+        gsap.from(sec,{opacity:0,y:50,duration:1,scrollTrigger:{trigger:sec,start:"top 85%"}})
+      });
+    });
+
+    // RSVP & Ucapan
+    const form=document.getElementById('rsvpForm');
+    const daftarUcapan=document.getElementById('daftarUcapan');
+    let ucapanList=JSON.parse(localStorage.getItem('ucapanList'))||[];
+    renderUcapan();
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const nama=document.getElementById('nama').value.trim();
+      const kehadiran=document.getElementById('kehadiran').value;
+      const ucapan=document.getElementById('ucapan').value.trim();
+      if(!nama||!kehadiran||!ucapan)return;
+      ucapanList.push({nama,kehadiran,ucapan});
+      localStorage.setItem('ucapanList',JSON.stringify(ucapanList));
+      form.reset();
+      renderUcapan();
+    });
+    function renderUcapan(){
+      daftarUcapan.innerHTML='';
+      if(ucapanList.length===0){
+        daftarUcapan.innerHTML='<li class="text-center text-gray-400">Belum ada ucapan.</li>';return;
+      }
+      ucapanList.forEach(item=>{
+        const li=document.createElement('li');
+        li.className='bg-black/30 p-4 rounded';
+        li.innerHTML=`<p class="font-semibold text-yellow-200">${item.nama} <span class="text-sm text-gray-400">(${item.kehadiran})</span></p><p class="mt-2">${item.ucapan}</p>`;
+        daftarUcapan.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

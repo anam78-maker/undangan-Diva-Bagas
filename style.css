@@ -1,0 +1,117 @@
+\:root {
+  --bg-dark: #0e0f0d;
+  --bg-light: #f6f1eb;
+  --primary: #1a3a32;
+  --secondary: #d4c2a8;
+  --accent: #ffffff;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-dark);
+  font-family: 'Raleway','Coolvetica',sans-serif;}
+  color:var(--accent)
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: var(--bg-light);
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: 'Cinzel', serif;
+  color: var(--primary);
+  
+  @font-face {
+  font-family: 'Coolvetica';
+  src: url('assets/fonts/'Coolvetica') format('truetype')
+       url('assets/fonts/) format('ttf')
+       url('assets/fonts/Coolvetica.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+}
+
+.cover {
+  background: url("assets/cover.jpg") center/cover no-repeat;
+  position: relative;
+}
+.cover .overlay {
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cover h1 {
+  font-size: 2.5rem;
+  color: var(--secondary);
+}
+.cover .date {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.timing ul {
+  list-style: none;
+  padding: 0;
+}
+.timing li {
+  margin: 0.5rem 0;
+}
+.timing span {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.dresscode .colors {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.dresscode .colors span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 80%;
+}
+form input, form select, form textarea {
+  padding: 0.6rem;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+}
+form button {
+  padding: 0.7rem;
+  background: var(--primary);
+  color: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#daftarUcapan {
+  margin-top: 1rem;
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+#daftarUcapan li {
+  background: var(--bg-dark);
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  color: var(--accent);
+}
