@@ -3,127 +3,149 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Undangan Pernikahan Diva & Bagas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <title>Undangan Pernikahan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <style>
-    @font-face {
-      font-family: 'CustomPengantin';
-      src: url('assets/font/Fall in love.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'CustomHeading';
-      src: url('assets/font/Fall in love.ttf') format('truetype');
-    }
-    body { scroll-behavior: smooth; background:#f9f6f1; color:#2b2b2b; }
-    .font-display { font-family: 'CustomPengantin', cursive; }
-    .font-heading { font-family: 'CustomHeading', serif; }
-    .font-body { font-family: 'Noto Sans', sans-serif; }
-    #musicControl { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; }
-    .section-padding { padding: 4rem 1rem; }
-    .countdown-box { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .countdown-item { background-color: #fff; padding: 1rem 1.5rem; border-radius: 0.5rem; min-width: 70px; border:1px solid #ddd; }
-    .countdown-number { font-size: 2rem; font-weight: bold; color: #c97d6c; }
-    .overlay { background: rgba(0,0,0,0.4); }
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
-      100% { transform: translateY(0px); }
-    }
-    .ornamen { position:absolute; z-index:5; opacity:0.8; pointer-events:none; }
-    .ornamen-float { animation: float 8s ease-in-out infinite; }
+    body {scroll-behavior:smooth;}
+    .font-display{font-family:'Great Vibes',cursive;}
+    .font-body{font-family: 'Coolvetica Rg Cond.otf', sans-serif;}
+    .overlay{background:linear-gradient(to bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.7));}
+    #musicControl{position:fixed;bottom:1rem;right:1rem;z-index:50;}
+    .section-padding{padding:4rem 1rem;}
+    .countdown-box{display:flex;gap:1rem;justify-content:center;}
+    .countdown-item{background-color:rgba(0,0,0,0.4);padding:1rem 1.5rem;border-radius:0.5rem;min-width:70px;}
+    .countdown-number{font-size:2rem;font-weight:bold;color:#facc15;}
   </style>
 </head>
-<body class="font-body">
+<body class="bg-[#1c1b1b] text-white font-body">
 
   <!-- AUDIO -->
   <audio id="bgMusic" loop>
     <source src="assets/backsoun.mp3" type="audio/mpeg">
   </audio>
-  <button id="musicControl" class="hidden px-4 py-2 bg-[#c97d6c] text-white rounded-full shadow hover:scale-105 transition">⏸ Pause</button>
+<button id="musicControl" class="hidden px-4 py-2 bg-yellow-600 rounded-full shadow hover:scale-105 transition">⏸ Pause</button>
 
   <!-- OPEN INVITATION -->
-  <section id="open" class="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+  <section id="open" class="relative h-screen flex flex-col items-center justify-center text-center">
     <img src="assets/foto1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Background"/>
     <div class="absolute inset-0 overlay"></div>
-    <!-- Ornamen -->
-    <img src="assets/ornamen/ornamen1.png" class="ornamen ornamen-float top-8 left-6 w-28" alt="">
-    <img src="assets/ornamen/ornamen2.png" class="ornamen ornamen-float bottom-8 right-6 w-28" alt="">
-    <div class="relative z-10 space-y-6 text-white">
+    <div class="relative z-10 space-y-6">
       <h2 class="text-lg tracking-widest">The Wedding Of</h2>
-      <h1 class="text-6xl font-display">Diva & Bagas</h1>
+      <h1 class="text-6xl font-display text-yellow-200">Diva & Bagas</h1>
       <p class="text-sm">Sabtu, 12 Oktober 2025</p>
-      <button onclick="showInvitation()" class="mt-6 px-6 py-2 bg-[#c97d6c] rounded-full hover:scale-105 transition-transform">Open Invitation</button>
+      <button onclick="showInvitation()" class="mt-6 px-6 py-2 bg-yellow-600 rounded-full hover:scale-105 transition-transform">Open Invitation</button>
     </div>
   </section>
 
   <!-- UNDANGAN -->
   <main id="invitation" class="hidden">
-
     <!-- Hero -->
-    <section class="relative h-screen flex items-end justify-center text-center overflow-hidden">
+    <section class="relative h-[60vh] flex flex-col items-center justify-center text-center">
       <img src="assets/foto1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Hero"/>
       <div class="absolute inset-0 overlay"></div>
-      <!-- Ornamen -->
-      <img src="assets/ornamen/ornamen3.png" class="ornamen ornamen-float top-12 left-6 w-24" alt="">
-      <img src="assets/ornamen/ornamen4.png" class="ornamen ornamen-float top-16 right-8 w-28" alt="">
-      <img src="assets/ornamen/ornamen1.png" class="ornamen ornamen-float bottom-12 left-10 w-20" alt="">
-      <img src="assets/ornamen/ornamen2.png" class="ornamen ornamen-float bottom-12 right-12 w-24" alt="">
-      <div class="relative z-10 mb-20 text-white">
-        <h2 class="text-lg tracking-widest mb-2">The Wedding of</h2>
-        <h1 class="text-6xl md:text-7xl font-display">Diva & Bagas</h1>
-        <p class="mt-2 text-base md:text-lg">Sabtu, 12 Oktober 2025</p>
+      <div class="relative z-10">
+        <h1 class="text-5xl font-display text-yellow-200">Diva & Bagas</h1>
+        <p class="mt-2">Minggu, 12 Oktober 2025</p>
       </div>
     </section>
 
-    <!-- Detail Acara + Countdown -->
-    <section class="section-padding text-center bg-white relative overflow-hidden">
-      <img src="assets/ornamen/ornamen1.png" class="ornamen ornamen-float top-4 left-4 w-20" alt="">
-      <img src="assets/ornamen/ornamen2.png" class="ornamen ornamen-float bottom-4 right-4 w-24" alt="">
-      <h2 class="text-3xl font-heading mb-6">Undangan Pernikahan</h2>
-      <p class="text-2xl font-display mb-4">Diva & Bagas</p>
-      <p class="mb-2">Saint Mary Church</p>
-      <p class="mb-2">123 Kayu Manis Utara Street</p>
-      <p class="font-semibold text-[#c97d6c] mb-6">Sabtu, 12 Oktober 2025</p>
-      <div id="countdown" class="countdown-box"></div>
+    <!-- Countdown Timer -->
+    <section class="max-w-3xl mx-auto px-12 section-padding text-center">
+      <h2 class="text-3xl text-center font-display text-yellow-200 mb-8">Menuju Hari Bahagia</h2>
+      <div id="countdown" class="countdown-box">
+        <div class="countdown-item">
+          <div id="days" class="countdown-number">00</div>
+          <div>Hari</div>
+        </div>
+        <div class="countdown-item">
+          <div id="hours" class="countdown-number">00</div>
+          <div>Jam</div>
+        </div>
+        <div class="countdown-item">
+          <div id="minutes" class="countdown-number">00</div>
+          <div>Menit</div>
+        </div>
+        <div class="countdown-item">
+          <div id="seconds" class="countdown-number">00</div>
+          <div>Detik</div>
+        </div>
+      </div>
     </section>
 
     <!-- Profil -->
-    <section class="section-padding text-center relative overflow-hidden">
-      <img src="assets/ornamen/ornamen3.png" class="ornamen ornamen-float top-10 right-4 w-20" alt="">
-      <img src="assets/ornamen/ornamen4.png" class="ornamen ornamen-float bottom-10 left-4 w-24" alt="">
-      <h2 class="text-3xl font-heading mb-8">Tentang Kami</h2>
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Tentang Kami</h2>
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div>
-          <img src="assets/foto2.jpg" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover"/>
-          <h3 class="text-2xl font-semibold">Diva Syaharani</h3>
-          <p class="mt-2">Putri dari Bpk Muntomo & Ibu Sari Tarmi<br>Randakeli Rt. 03/04 Pohkumbang, Karanganyar, Kebumen</p>
+          <img src="assets/diva.png" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover"/>
+          <h3 class="max-w-3xl mx-auto px-12 text-2xl font-semibold">Diva Syaharani</h3>
+          <p class="max-w-3xl mx-auto mt-2 text-sm">Putri dari Bpk Muntomo & Ibu Sari Tarmi</p>
+          </p> Randakeli Rt.03/04 Pohkumbang, Karanganyar, Kebumen</p>
         </div>
         <div>
-          <img src="assets/foto3.jpg" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover"/>
-          <h3 class="text-2xl font-semibold">Bagas Susilo</h3>
-          <p class="mt-2">Putra dari Bpk Rokijan & Ibu Mardiyah<br>Maribaya Rt. 01/03 Pohkumbang, Karanganyar, Kebumen</p>
+          <img src="assets/bagas.jpg" class="w-40 h-40 rounded-full mx-auto mb-4 object-cover"/>
+          <h3 class="max-w-3xl mx-auto px-12 text-2xl font-semibold">Bagas Susilo</h3>
+          <p class="max-w-3xl mx-auto mt-2 text-sm">Putra dari Bpk Rokijan & Ibu Mardiyah</p>
+          </p>Maribaya Rt.01/03 Pohkumbang, Karanganyar, Kebumen</p>
         </div>
       </div>
     </section>
 
-    <!-- Program -->
-    <section class="section-padding text-center relative overflow-hidden bg-white">
-      <img src="assets/ornamen/ornamen3.png" class="ornamen ornamen-float top-0 right-0 w-20" alt="">
-      <h2 class="text-3xl font-heading mb-6">Wedding Program</h2>
-      <div class="max-w-md mx-auto space-y-3">
-        <p>08:00 - Akad Nikah</p>
-        <p>09:00 - Resepsi</p>
-        <p>12:00 - Makan & Hiburan</p>
-        <p>15:00 - Penutup</p>
+    <!-- Detail Acara -->
+    <section class="section-padding bg-black/30 text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Detail Acara</h2>
+      <div class="space-y-6 max-w-2xl mx-auto">
+        <div>
+          <h4 class="max-w-3xl mx-auto px-8 text-xl font-semibold">Akad Nikah</h4>
+          <p>Minggu, 12 Oktober 2025 | 08:00 WIB</p>
+          <p>Lokasi: (Kediaman Mempelai wanita)<p>
+          <p>Randakeli Rt.03/04 Pohkumbang, Karanganyar, Kebumen</p>
+        </div>
+        <div>
+          <h4 class="max-w-3xl mx-auto px-8 text-xl font-semibold">Resepsi</h4>
+          <p>Minggu, 12 Oktober 2025 | 09:00 WIB - Selesai</p>
+          <p>Lokasi: (Kediaman mempelai wanita)<p>
+          </p>Randakeli Rt.03/04 Pohkumbang, Karanganyar, Kebumen </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ayat Al-Qur'an -->
+    <section class="section-padding text-center bg-[#1a1a1a]/60">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Ayat Suci Al-Qur’an</h2>
+      <div class="max-w-3xl mx-auto space-y-6">
+        <p class="max-w-3xl mx-auto px-4 italic text-lg leading-relaxed">
+          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ
+          بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+        </p>
+        <p class="text-yellow-200 font-medium">— QS. Ar-Rum : 21 —</p>
+        <p class="text-gray-300">
+        <p class="max-w-3xl mx-auto px-12 italic text-sm leading-relaxed">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+          jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu
+          rasa kasih dan sayang.”
+        </p>
+      </div>
+    </section>
+
+    <!-- Kisah Cinta -->
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8 text-center">Kisah Cinta Kami</h2>
+      <div class="max-w-3xl mx-auto px-12 text-center leading-relaxed text-sm">
+        <p>Tidak ada yang kebetulan di dunia ini. Semua sudah tersusun dengan sangat rapi, oleh sang maha kuasa. kami tidak bisa memilih kepada siapa kita akan jatuh cinta. Untuk pertama kalinya kita bertemu tanpa sengaja di bangku SMK pada tahun 2018.<p>
+       
+          <p>Kehendak-Nya menuntun kami pada pertemuan yang tak pernah disangka hingga akhirnya pada tanggal 14 Januari 2023 membawa kami pada sebuah ikatan yang di Ridhoi-Nya.<p>
+        
+        <p>Bukan karena bertemu lalu berjodoh, tapi karena berjodohlah kami bisa bertemu kami memutuskan untuk mengikrarkan janji suci pernikahan pada 12 Oktober 2025.
+          sebagaimana yang pernah dikatakan oleh Ali Bin Abi Thalib : "Apa yang menjadi takdirmu akan menemukan jalannya untuk menemukanmu"
+      </p>
       </div>
     </section>
 
     <!-- Galeri -->
-    <section class="section-padding text-center relative overflow-hidden">
-      <img src="assets/ornamen/ornamen4.png" class="ornamen ornamen-float top-0 left-0 w-20" alt="">
-      <img src="assets/ornamen/ornamen2.png" class="ornamen ornamen-float bottom-0 right-0 w-24" alt="">
-      <h2 class="text-3xl font-heading mb-8">Galeri Foto</h2>
+    <section class="section-padding bg-black/30 text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Galeri Foto</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-4xl mx-auto">
         <img src="assets/foto1.jpg" class="rounded-lg object-cover"/>
         <img src="assets/foto2.jpg" class="rounded-lg object-cover"/>
@@ -133,40 +155,69 @@
     </section>
 
     <!-- Lokasi -->
-    <section class="section-padding text-center bg-white relative overflow-hidden">
-      <img src="assets/ornamen/ornamen1.png" class="ornamen ornamen-float top-4 left-6 w-20" alt="">
-      <h2 class="text-3xl font-heading mb-8">Lokasi</h2>
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Lokasi</h2>
       <iframe class="w-full max-w-3xl mx-auto rounded-lg h-64"
         src="https://www.google.com/maps/embed?pb=!1m18..."
         allowfullscreen="" loading="lazy"></iframe>
     </section>
 
-    <!-- RSVP -->
-    <section class="section-padding text-center relative overflow-hidden">
-      <img src="assets/ornamen/ornamen3.png" class="ornamen ornamen-float bottom-6 right-4 w-20" alt="">
-      <h2 class="text-3xl font-heading mb-8">Konfirmasi Kehadiran</h2>
+    <!-- Hadiah -->
+    <section id="gift" class="min-h-screen flex flex-col items-center justify-center bg-[#f8f5f2] px-6 py-16 text-center">
+  <h2 class="text-3xl font-serif text-[#a47c48] mb-4 fade-in">Wedding Gift</h2>
+  <p class="text-gray-700 max-w-md mb-10 fade-in delay-1">
+    Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih, dapat melalui rekening berikut:
+  </p>
+
+  <!-- Kartu Rekening -->
+  <div class="space-y-6 w-full max-w-md fade-in delay-2">
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-[#e4dccf]">
+      <img src="assets/bca.png" alt="BCA" class="mx-auto mb-3 w-16">
+      <h3 class="text-lg font-semibold text-gray-800">Bank Mandiri - 1840006015208</h3>
+      <p class="text-gray-500">a.n. DIVA SYAHARANI</p>
+      <button 
+        class="mt-4 bg-[#a47c48] hover:bg-[#8b6b3f] text-white px-4 py-2 rounded-lg text-sm transition transform hover:scale-105"
+        onclick="copyToClipboard('1840006015208')">
+        Salin Nomor Rekening
+      </button>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-2xl p-6 border border-[#e4dccf]">
+      <img src="assets/dana.png" alt="DANA" class="mx-auto mb-3 w-16">
+      <h3 class="text-lg font-semibold text-gray-800">DANA - 081234567890</h3>
+      <p class="text-gray-500">a.n. Eni</p>
+      <button 
+        class="mt-4 bg-[#a47c48] hover:bg-[#8b6b3f] text-white px-4 py-2 rounded-lg text-sm transition transform hover:scale-105"
+        onclick="copyToClipboard('081234567890')">
+        Salin Nomor DANA
+      </button>
+    </div>
+  </div>
+
+  <p class="text-gray-600 mt-12 italic fade-in delay-3">
+    Terima kasih atas doa dan kasih sayangnya
+  </p>
+</section>
+  
+     <!-- RSVP -->
+    <section class="section-padding text-center">
+      <h2 class="text-3xl font-display text-yellow-200 mb-8">Konfirmasi Kehadiran</h2>
       <form id="rsvpForm" class="max-w-md mx-auto space-y-4">
-        <input id="nama" type="text" placeholder="Nama" class="w-full p-2 rounded border" required>
-        <select id="kehadiran" class="w-full p-2 rounded border" required>
+        <input id="nama" type="text" placeholder="Nama" class="w-full p-2 rounded text-black" required>
+        <select id="kehadiran" class="w-full p-2 rounded text-black" required>
           <option value="">Apakah Anda akan hadir?</option>
           <option value="Ya">Ya, saya akan hadir</option>
           <option value="Tidak">Maaf, tidak bisa hadir</option>
         </select>
-        <textarea id="ucapan" placeholder="Ucapan atau doa" class="w-full p-2 rounded border" required></textarea>
-        <button type="submit" class="px-6 py-2 bg-[#c97d6c] text-white rounded-full hover:scale-105 transition">Kirim</button>
+        <textarea id="ucapan" placeholder="Ucapan atau doa" class="w-full p-2 rounded text-black" required></textarea>
+        <button type="submit" class="px-6 py-2 bg-yellow-600 rounded-full hover:scale-105 transition">Kirim</button>
       </form>
       <div class="max-w-2xl mx-auto mt-12 text-left">
-        <h3 class="text-2xl font-heading mb-4 text-center">Ucapan yang Masuk</h3>
+        <h3 class="text-2xl font-display text-yellow-200 mb-4 text-center">Ucapan yang Masuk</h3>
         <ul id="daftarUcapan" class="space-y-4"></ul>
       </div>
     </section>
-
-    <!-- Hadiah -->
-    <section class="section-padding text-center bg-white relative overflow-hidden">
-      <img src="assets/ornamen/ornamen2.png" class="ornamen ornamen-float top-0 right-6 w-20" alt="">
-      <h2 class="text-3xl font-heading mb-8">Hadiah</h2>
-      <p>Jika ingin memberi hadiah, berikut pilihan yang tersedia…</p>
-    </section>
+  
   </main>
 
   <!-- GSAP -->
@@ -193,9 +244,12 @@
       isPlaying=!isPlaying;
     });
 
-    // Countdown
+    // Countdown Timer
     const weddingDate=new Date("Oct 12, 2025 10:00:00").getTime();
-    const countdown=document.getElementById('countdown');
+    const daysEl=document.getElementById('days');
+    const hoursEl=document.getElementById('hours');
+    const minutesEl=document.getElementById('minutes');
+    const secondsEl=document.getElementById('seconds');
     setInterval(()=>{
       const now=new Date().getTime();
       const distance=weddingDate-now;
@@ -203,21 +257,16 @@
       const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
       const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
       const seconds=Math.floor((distance%(1000*60))/1000);
-      countdown.innerHTML=`
-        <div class="countdown-item"><div class="countdown-number">${days}</div><div>Hari</div></div>
-        <div class="countdown-item"><div class="countdown-number">${hours}</div><div>Jam</div></div>
-        <div class="countdown-item"><div class="countdown-number">${minutes}</div><div>Menit</div></div>
-        <div class="countdown-item"><div class="countdown-number">${seconds}</div><div>Detik</div></div>
-      `;
+      daysEl.textContent=days<10?'0'+days:days;
+      hoursEl.textContent=hours<10?'0'+hours:hours;
+      minutesEl.textContent=minutes<10?'0'+minutes:minutes;
+      secondsEl.textContent=seconds<10?'0'+seconds:seconds;
     },1000);
 
     // Scroll animations
     document.addEventListener("DOMContentLoaded",()=>{
       gsap.utils.toArray("section").forEach(sec=>{
-        gsap.from(sec,{opacity:0,y:50,duration:1,scrollTrigger:{trigger:sec,start:"top 85%"}})
-      });
-      gsap.utils.toArray(".ornamen").forEach((el,i)=>{
-        gsap.from(el,{opacity:0,scale:0.8,duration:1,delay:i*0.2,scrollTrigger:{trigger:el,start:"top 90%"}})
+        gsap.from(sec,{opacity:0,y:50,duration:1,scrollTrigger:{trigger:sec,start:"top 85%"}});
       });
     });
 
@@ -244,8 +293,8 @@
       }
       ucapanList.forEach(item=>{
         const li=document.createElement('li');
-        li.className='bg-[#f9f6f1] border p-4 rounded';
-        li.innerHTML=`<p class="font-semibold">${item.nama} <span class="text-sm text-gray-500">(${item.kehadiran})</span></p><p class="mt-2">${item.ucapan}</p>`;
+        li.className='bg-black/30 p-4 rounded';
+        li.innerHTML=`<p class="font-semibold text-yellow-200">${item.nama} <span class="text-sm text-gray-400">(${item.kehadiran})</span></p><p class="mt-2">${item.ucapan}</p>`;
         daftarUcapan.appendChild(li);
       });
     }
