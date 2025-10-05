@@ -140,3 +140,27 @@ form button {
     transform: translateY(0);
   }
 }
+
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: linear-gradient(135deg, #d4c2a8, #e9dfc8);
+  color: #0e0f0d;
+  padding: 14px 30px;
+  border-radius: 40px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 9999;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}

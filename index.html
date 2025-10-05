@@ -231,6 +231,7 @@
     </section>
   </main>
 
+
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -258,10 +259,13 @@
     });
 
     // Notifikasi kecil
-    function showToast() {
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
-    }
+function showToast() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+</script>
+
   </script>
 
   <!-- Firebase -->
@@ -315,6 +319,12 @@
         daftarUcapan.appendChild(li);
       });
     });
+
+function showToast() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
   </script>
 
 
